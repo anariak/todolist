@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Formulario from './components/form'
+import Listado from './components/listado';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state ={
+      nuevatarea : []
+    }
+  }
+  agregartarea =tarea=>{
+    //crear copia del state
+    const lista = {...this.state.nuevatarea};
+    console.log(lista)
+    //enviar al nuevo componente
+  }
+  handlerTarea = e =>{
+    this.setState({
+      nuevatarea : [...this.state.nuevatarea, e]
+    })
+  };
+  render(){
+    return(
+      <div className="Container">
+        <Formulario 
+        handlerTarea={this.handlerTarea} />
+        <Listado 
+        lista ={this.state.nuevatarea}/>
+      </div>
+    )
+  }
 }
-
 export default App;
